@@ -20,7 +20,7 @@ urlpatterns = [
     path('api/v1/', include("Usuario.urls")),
     path('api/v1/', include("Maestro.urls")),
     path('api/v1/', include("Carrera.urls")),
-    path('api/v1/', include("IntencionDidactica.urls")),
-    path('api/v1/', include("Aula.urls")),
-    path('api/v1/', include("Alumnos.urls")),
+    path('api/v1/', include("Clase.urls")),
+    path('api/v1/', include("Alumno.urls")),
+    path('api/v1/', include("Materia.urls")),
 ]
