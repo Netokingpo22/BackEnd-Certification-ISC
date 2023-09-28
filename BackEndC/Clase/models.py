@@ -2,6 +2,7 @@ from django.db import models
 
 from Maestro.models import Maestro
 from Materia.models import Materia
+from Tema.models import Tema
 
 # Create your models here.
 

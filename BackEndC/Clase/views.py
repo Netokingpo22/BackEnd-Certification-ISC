@@ -1,6 +1,10 @@
 from rest_framework.response import Response
+
 from rest_framework.decorators import api_view
-from Clase.claseSerializers import aulaSerializers, grupoSerializers, claseSerializers
+
+from Clase.claseSerializers import aulaSerializers
+from Clase.claseSerializers import grupoSerializers
+from Clase.claseSerializers import claseSerializers
 
 from Clase.models import Aula, Grupo, Clase
 
@@ -49,4 +53,4 @@ def clase_api_view(request):
         if clasesSerializers.is_valid():
             clasesSerializers.save()
             return Response(clasesSerializers.data)
-        return Response(clasesSerializers.errors)
+        return Response(clasesSerializers.errors) 

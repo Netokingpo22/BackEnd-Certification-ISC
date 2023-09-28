@@ -21,6 +21,9 @@ urlpatterns = [
     path('api/v1/', include("Maestro.urls")),
     path('api/v1/', include("Carrera.urls")),
     path('api/v1/', include("Clase.urls")),
-    path('api/v1/', include("Alumno.urls")),
     path('api/v1/', include("Materia.urls")),
+    path('api/v1/', include("Tema.urls")),
+    path('api/v1/', include("Alumno.urls")),
+    path('api/v1/', include("Competencia.urls")),
+    path('api/v1/', include("AtributoEgreso.urls")),
 ]

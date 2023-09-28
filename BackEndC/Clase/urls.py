@@ -1,5 +1,8 @@
 from django.urls import path
-from Clase.views import aula_api_view, grupo_api_view, clase_api_view
+
+from Clase.views import aula_api_view
+from Clase.views import grupo_api_view
+from Clase.views import clase_api_view
 
 urlpatterns = [
     path('Aula', aula_api_view, name='aula_api'),
