@@ -5,19 +5,27 @@ from AtributoEgreso.usuarioSerializers import atributoEgresoSerializers
 from AtributoEgreso.usuarioSerializers import criterioDesempeñoSerializers
 from AtributoEgreso.usuarioSerializers import indicadorSerializers
 
-from AtributoEgreso.models import AtributoEgreso,CriterioDesempeño,Indicador
+from AtributoEgreso.models import AtributoEgreso, CriterioDesempeño, Indicador
 
 # Create your views here.
 
 
-@api_view(['GET', 'POST'])
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
+
+@api_view(['POST', 'GET'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def atributoEgreso_api_view(request):
 
     if request.method == 'GET':
         atributoEgreso = AtributoEgreso.objects.all()
-        atributoESerializers = atributoEgresoSerializers(atributoEgreso, many=True)
+        atributoESerializers = atributoEgresoSerializers(
+            atributoEgreso, many=True)
         return Response(atributoESerializers.data)
-    
+
     elif request.method == 'POST':
         atributoESerializers = atributoEgresoSerializers(data=request.data)
         if atributoESerializers.is_valid():
@@ -25,14 +33,18 @@ def atributoEgreso_api_view(request):
             return Response(atributoESerializers.data)
         return Response(atributoESerializers.errors)
 
-@api_view(['GET', 'POST'])
+
+@api_view(['POST', 'GET'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def criterioDesempeño_api_view(request):
 
     if request.method == 'GET':
         criterioDesempeño = CriterioDesempeño.objects.all()
-        criterioDSerializers = criterioDesempeñoSerializers(criterioDesempeño, many=True)
+        criterioDSerializers = criterioDesempeñoSerializers(
+            criterioDesempeño, many=True)
         return Response(criterioDSerializers.data)
-    
+
     elif request.method == 'POST':
         criterioDSerializers = criterioDesempeñoSerializers(data=request.data)
         if criterioDSerializers.is_valid():
@@ -40,14 +52,17 @@ def criterioDesempeño_api_view(request):
             return Response(criterioDSerializers.data)
         return Response(criterioDSerializers.errors)
 
-@api_view(['GET', 'POST'])
+
+@api_view(['POST', 'GET'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def indicador_api_view(request):
 
     if request.method == 'GET':
         indicador = Indicador.objects.all()
         indicadoresSerializers = indicadorSerializers(indicador, many=True)
         return Response(indicadoresSerializers.data)
-    
+
     elif request.method == 'POST':
         indicadoresSerializers = indicadorSerializers(data=request.data)
         if indicadoresSerializers.is_valid():

@@ -10,7 +10,14 @@ from Alumno.alumnoSerializers import alumnoTemaClaseSerializers
 # Create your views here.
 
 
-@api_view(['GET', 'POST'])
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
+
+@api_view(['POST', 'GET'])
+@authentication_classes([SessionAuthentication,TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def alumno_api_view(request):
 
     if request.method == 'GET':
@@ -25,7 +32,10 @@ def alumno_api_view(request):
             return Response(alumnosSerializers.data)
         return Response(alumnosSerializers.errors)
 
-@api_view(['GET', 'POST'])
+
+@api_view(['POST', 'GET'])
+@authentication_classes([SessionAuthentication,TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def alumnoClase_api_view(request):
 
     if request.method == 'GET':
@@ -40,7 +50,10 @@ def alumnoClase_api_view(request):
             return Response(alumnoCSerializers.data)
         return Response(alumnoCSerializers.errors)
 
-@api_view(['GET', 'POST'])
+
+@api_view(['POST', 'GET'])
+@authentication_classes([SessionAuthentication,TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def alumnoTemaClase_api_view(request):
 
     if request.method == 'GET':

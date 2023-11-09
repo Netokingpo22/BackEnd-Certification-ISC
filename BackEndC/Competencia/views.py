@@ -9,7 +9,14 @@ from Competencia.competenciaSerializers import listaCompetenciaSerializers
 # Create your views here.
 
 
-@api_view(['GET', 'POST'])
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
+
+@api_view(['POST', 'GET'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def competencia_api_view(request):
 
     if request.method == 'GET':
@@ -24,12 +31,16 @@ def competencia_api_view(request):
             return Response(competenciaS.data)
         return Response(competenciaS.errors)
 
-@api_view(['GET', 'POST'])
+
+@api_view(['POST', 'GET'])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def listaCompetencia_api_view(request):
 
     if request.method == 'GET':
         listaCompetencia = ListaCompetencia.objects.all()
-        listaCSerializers = listaCompetenciaSerializers(listaCompetencia, many=True)
+        listaCSerializers = listaCompetenciaSerializers(
+            listaCompetencia, many=True)
         return Response(listaCSerializers.data)
 
     elif request.method == 'POST':
