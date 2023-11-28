@@ -62,7 +62,7 @@ def alumnoTemaClase_api_view(request):
         return Response(alumnoTCSerializers.data)
 
     elif request.method == 'POST':
-        alalumnoTCSerializersumnoCSerializers = alumnoTemaClaseSerializers(data=request.data)
+        alumnoTCSerializers = alumnoTemaClaseSerializers(data=request.data)
         if alumnoTCSerializers.is_valid():
             alumnoTCSerializers.save()
             return Response(alumnoTCSerializers.data)

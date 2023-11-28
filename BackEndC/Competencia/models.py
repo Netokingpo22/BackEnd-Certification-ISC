@@ -13,7 +13,7 @@ niveles = {
 
 class Competencia(models.Model):
     nombre = models.CharField(max_length=256)
-    temas = models.ManyToManyField(Tema)
+    temas = models.ForeignKey(Tema, on_delete=models.PROTECT)
     nivel = models.CharField(max_length=32, choices=niveles.items())
     resumen = models.TextField()
 
